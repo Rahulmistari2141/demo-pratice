@@ -12,12 +12,12 @@ let editingLi = null; // Track the li being edited
 
     if (editingLi) {
 
-      // Edit existing li
+    // Edit existing li
       editingLi.querySelector("li").textContent = inputValue;
       editingLi = null;
     } else {
 
-      // Create new li
+    // Create new li
       const li = document.createElement("li");
       li.className = "list-group-item";
 
@@ -26,8 +26,7 @@ let editingLi = null; // Track the li being edited
 
       const buttonGroup = document.createElement("div");
 
-      // Edit button functionality 
-
+    // Edit button functionality 
       const btnEdit = document.createElement("button");
       btnEdit.className = "btn btn-icon";
       const btnEditIcon = document.createElement("i");
@@ -39,8 +38,7 @@ let editingLi = null; // Track the li being edited
         editingLi = li;
       };
 
-      // Delete button functionality
-
+    // Delete button functionality
       const btnDelete = document.createElement("button");
       btnDelete.className = "btn btn-icon";
       const deleteIcon = document.createElement("i");
@@ -54,7 +52,6 @@ let editingLi = null; // Track the li being edited
 
       buttonGroup.appendChild(btnEdit);
       buttonGroup.appendChild(btnDelete);
-
       li.appendChild(textlist);
       li.appendChild(buttonGroup);
 
