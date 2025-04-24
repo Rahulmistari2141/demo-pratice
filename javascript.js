@@ -11,18 +11,22 @@ let editingLi = null; // Track the li being edited
     }
 
     if (editingLi) {
+
       // Edit existing li
-      editingLi.querySelector("span").textContent = inputValue;
+      editingLi.querySelector("li").textContent = inputValue;
       editingLi = null;
     } else {
+
       // Create new li
       const li = document.createElement("li");
-      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.className = "list-group-item";
 
-      const textSpan = document.createElement("span");
-      textSpan.textContent = inputValue;
+      const textlist = document.createElement("li");
+      textlist.textContent = inputValue;
 
       const buttonGroup = document.createElement("div");
+
+      // Edit button functionality 
 
       const btnEdit = document.createElement("button");
       btnEdit.className = "btn btn-icon";
@@ -31,9 +35,11 @@ let editingLi = null; // Track the li being edited
       btnEdit.appendChild(btnEditIcon);
 
       btnEdit.onclick = function () {
-        input.value = textSpan.textContent;
+        input.value = textlist.textContent;
         editingLi = li;
       };
+
+      // Delete button functionality
 
       const btnDelete = document.createElement("button");
       btnDelete.className = "btn btn-icon";
@@ -49,7 +55,7 @@ let editingLi = null; // Track the li being edited
       buttonGroup.appendChild(btnEdit);
       buttonGroup.appendChild(btnDelete);
 
-      li.appendChild(textSpan);
+      li.appendChild(textlist);
       li.appendChild(buttonGroup);
 
       document.getElementById("myUL").appendChild(li);
