@@ -1,4 +1,3 @@
-// Create a new list item when clicking on the "Add" button
 let editingLi = null; // Track the li being edited
 
   function newElement() {
