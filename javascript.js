@@ -18,8 +18,8 @@ let editingLi = null; // Track the li being edited
     } else {
 
     // Create new li
-      const li = document.createElement("li");
-      li.className = "list-group-item";
+      const list = document.createElement("li");
+      list.className = "list-group-item";
 
       const textlist = document.createElement("li");
       textlist.textContent = inputValue;
@@ -35,7 +35,7 @@ let editingLi = null; // Track the li being edited
 
       btnEdit.onclick = function () {
         input.value = textlist.textContent;
-        editingLi = li;
+        editingLi = list;
       };
 
     // Delete button functionality
@@ -46,16 +46,16 @@ let editingLi = null; // Track the li being edited
       btnDelete.appendChild(deleteIcon);
 
       btnDelete.onclick = function () {
-        if (editingLi === li) editingLi = null;
-        li.remove();
+        if (editingLi === list) editingLi = null;
+        list.remove();
       };
 
       buttonGroup.appendChild(btnEdit);
       buttonGroup.appendChild(btnDelete);
-      li.appendChild(textlist);
-      li.appendChild(buttonGroup);
+      list.appendChild(textlist);
+      list.appendChild(buttonGroup);
 
-      document.getElementById("myUL").appendChild(li);
+      document.getElementById("myUL").appendChild(list);
     }
 
     input.value = '';
