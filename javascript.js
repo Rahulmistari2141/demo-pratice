@@ -19,12 +19,13 @@ let editingLi = null; // Track the li being edited
 
     // Create new li
       const list = document.createElement("li");
+      // list.textContent = inputValue;
       list.className = "list-group-item";
 
       const textlist = document.createElement("li");
       textlist.textContent = inputValue;
 
-      const buttonGroup = document.createElement("div");
+      // const buttonGroup = document.createElement("li");
 
     // Edit button functionality 
       const btnEdit = document.createElement("button");
@@ -34,7 +35,7 @@ let editingLi = null; // Track the li being edited
       btnEdit.appendChild(btnEditIcon);
 
       btnEdit.onclick = function () {
-        input.value = textlist.textContent;
+        input.value = list.textContent;
         editingLi = list;
       };
 
@@ -50,11 +51,11 @@ let editingLi = null; // Track the li being edited
         list.remove();
       };
 
-      buttonGroup.appendChild(btnEdit);
-      buttonGroup.appendChild(btnDelete);
       list.appendChild(textlist);
-      list.appendChild(buttonGroup);
 
+      // buttonGroup.appendChild(btnEdit);
+      // buttonGroup.appendChild(btnDelete);
+      // list.appendChild(buttonGroup);
       document.getElementById("myUL").appendChild(list);
     }
 
