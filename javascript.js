@@ -24,7 +24,7 @@ let editingLi = null; // Track the li being edited
       const textlist = document.createElement("li");
       textlist.textContent = inputValue;
 
-        // const buttonGroup = document.createElement("li");
+        const buttonGroup = document.createElement("li");
 
     // Edit button functionality 
       const btnEdit = document.createElement("button");
@@ -52,9 +52,9 @@ let editingLi = null; // Track the li being edited
 
       list.appendChild(textlist);
 
-          // buttonGroup.appendChild(btnEdit);
-          // buttonGroup.appendChild(btnDelete);
-          // list.appendChild(buttonGroup);
+          buttonGroup.appendChild(btnEdit);
+          buttonGroup.appendChild(btnDelete);
+          list.appendChild(buttonGroup);
       document.getElementById("myUL").appendChild(list);
     }
 
