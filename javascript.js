@@ -1,70 +1,7 @@
-// let editingLi = null; // Track the li being edited
-
-//   function newElement() {
-//     const input = document.getElementById("myInput");
-//     const inputValue = input.value.trim();
-
-//     if (inputValue === '') {
-//       alert("You must write something!");
-//       return;
-//     }
-
-//     if (editingLi) {
-
-//     // Edit existing li
-//       editingLi.querySelector("li").textContent = inputValue;
-//       editingLi = null;
-//     } else {
-
-//     // Create new li
-//       const list = document.createElement("li");
-//         // list.textContent = inputValue;
-//       list.className = "list-group-item";
-
-//       const textlist = document.createElement("li");
-//       textlist.textContent = inputValue;
-
-//         const buttonGroup = document.createElement("li");
-
-//     // Edit button functionality 
-//       const btnEdit = document.createElement("button");
-//       btnEdit.className = "btn btn-icon";
-//       const btnEditIcon = document.createElement("i");
-//       btnEditIcon.className = "fa-solid fa-pen-to-square";
-//       btnEdit.appendChild(btnEditIcon);
-
-//       btnEdit.onclick = function () {
-//         input.value = list.textContent;
-//         editingLi = list;
-//       };
-
-//     // Delete button functionality
-//       const btnDelete = document.createElement("button");
-//       btnDelete.className = "btn btn-icon";
-//       const deleteIcon = document.createElement("i");
-//       deleteIcon.className = "fa-solid fa-trash";
-//       btnDelete.appendChild(deleteIcon);
-
-//       btnDelete.onclick = function () {
-//         if (editingLi === list) editingLi = null;
-//         list.remove();
-//       };
-
-//       list.appendChild(textlist);
-
-//           buttonGroup.appendChild(btnEdit);
-//           buttonGroup.appendChild(btnDelete);
-//           list.appendChild(buttonGroup);
-//       document.getElementById("myUL").appendChild(list);
-//     }
-
-//     input.value = '';
-//   }
-
-
 const todolistInputId = document.getElementById("myInputId");
 const todolistInput = document.getElementById("myInput");
 const todolistUi = document.getElementById("addUlData");
+const genderList = document.getElementById("genderList");
 
 let todolistArry = [];
 let editIndex = null;
@@ -72,6 +9,7 @@ let editIndex = null;
 function newElement() {
   const inputlistValueId = todolistInputId.value.trim();
   const inputlistValue = todolistInput.value.trim();
+  const inputgenderList = genderList.value;
 
   if (inputlistValueId === '') {
     alert("Enter your task ID");
@@ -79,19 +17,24 @@ function newElement() {
   } else if (inputlistValue === '') {
     alert("Enter your task");
     return false;
-  }
+  } else if (inputgenderList == '') {
+    alert("Please Select Tasks Option");
+    return false;
+  };
 
-  if (inputlistValueId !== '' && inputlistValue !== '') {
+  if (inputlistValueId !== '' && inputlistValue !== '' && inputgenderList !=='') {
     // object create
     const todolistObj = {
       ListID: inputlistValueId,
       listValue: inputlistValue,
+      typeTask: inputgenderList,
     };
 
     // update object in array and check index
 
     if(editIndex !== null){
       todolistArry[editIndex] = todolistObj;
+      editFlag = false;
       editIndex = null;
     } else{
       todolistArry.push(todolistObj);
@@ -101,10 +44,14 @@ function newElement() {
     // todolistArry.push(todolistObj);
     inputlistValueId.value = '';
     inputlistValue.value = '';
+    inputgenderList.value = '',
     console.log(todolistArry);
     todolistInputId.value = '';
     todolistInput.value = '';
+    genderList.value = '';
     addlistData();
+
+    localStorage.setItem('todoListData', JSON.stringify(todolistArry));
   }
 
   // // push to array
@@ -120,7 +67,6 @@ function newElement() {
   // return false;
 }
 
-
 function addlistData() {
   todolistUi.innerHTML = '';
   for (let i = 0; i < todolistArry.length; i++) {
@@ -128,7 +74,7 @@ function addlistData() {
     listArry.className = "list-group-item";
     // listArry.textContent = todolistArry[i];
     // listArry.textContent = todolistArry[i].listValue;
-    listArry.textContent = todolistArry[i].ListID + " " + todolistArry[i].listValue;
+    listArry.textContent = todolistArry[i].ListID + " " + todolistArry[i].listValue + " " + todolistArry[i].typeTask;
     todolistUi.appendChild(listArry);
 
     const buttonGroup = document.createElement("div");
@@ -142,6 +88,7 @@ function addlistData() {
       todolistArry.splice(i, 1);
       listArry.remove();
       console.log(todolistArry);
+      localStorage.setItem('todoListData', JSON.stringify(todolistArry));
     }
 
     // edit button functionality
@@ -190,9 +137,6 @@ function addlistData() {
 //   inputElement1.value = todolistArry[index].listValue;
 // }
 
-
-
-  
 
 
 
