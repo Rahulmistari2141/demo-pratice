@@ -55,11 +55,14 @@
                     <div class="row g-2">
                         <div class="col-sm-4">
                             <select class="form-select" aria-label="Large select example" id="yearMonths">
-                                <option selected>Select Month</option>
-                                <option [value]="index[i]">Female</option>
-                                <option [value]="index[i]">Male</option>
                             </select>
                         </div>
+                        <div class="col-md-auto ms-auto">
+                            <button type="button" class="btn btn-primary addBtn" onclick="submitMonth()">
+                                Submit
+                            </button>
+                        </div>
+                        
                         <!-- <div class="col-sm-4">
                             <input type="text" class="form-control" id="studentId"
                                 placeholder="Enter student ID here...">
@@ -74,11 +77,7 @@
                                 <option [value]="index[i]">Male</option>
                             </select>
                         </div> -->
-                        <div class="col-md-auto ms-auto">
-                            <button type="button" class="btn btn-primary addBtn" onclick="submitData()">
-                                Submit
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

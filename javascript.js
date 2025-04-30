@@ -138,6 +138,25 @@ function addlistData() {
 // }
 
 
+const  monthSelect = document.getElementById("yearMonths");
+let html = '';
+const months = [
+  "January", "February", "March", "April",
+  "May", "June", "July", "August",
+  "September", "October", "November", "December"
+];
+// console.log(months);
+
+for (let i = 0; i < months.length; i++) {
+   html += `<option value="${months[i]}">${months[i]}</option>`;
+}
+// data binding to the html for select
+
+monthSelect.innerHTML = html ;  
+
+
+
+
 
 
 
