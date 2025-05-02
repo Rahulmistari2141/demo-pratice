@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="row ">
-            <div class="col-md-12 mt-5">
+            <div class="col-md-12 my-3 border-bottom">
                 <h1 class="fw-bold text-danger text-center">To Do App List</h1>
                 <div class="row justify-content-center gx-2" id="myDiv">
                     <div class="col-md-7">
@@ -52,32 +52,35 @@
             </div>
             <div class="container">
                 <div class="col-md-12">
-                    <div class="row g-2">
+                    <h1 class="fw-bold text-danger text-center mb-3">Calendar App Project</h1>
+                    <div class="row g-2 mb-2">
                         <div class="col-sm-4">
                             <select class="form-select" aria-label="Large select example" id="yearMonths">
                             </select>
                         </div>
-                        <div class="col-md-auto ms-auto">
+                        <div class="col-md-auto">
                             <button type="button" class="btn btn-primary addBtn" onclick="submitMonth()">
                                 Submit
                             </button>
                         </div>
-                        
-                        <!-- <div class="col-sm-4">
-                            <input type="text" class="form-control" id="studentId"
-                                placeholder="Enter student ID here...">
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="studentName" placeholder="Enter student name..">
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="form-select" aria-label="Large select example" id="studentGender">
-                                <option selected>Select Gender</option>
-                                <option [value]="index[i]">Female</option>
-                                <option [value]="index[i]">Male</option>
-                            </select>
-                        </div> -->
-                        
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table border">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                    <th>Satrday</th>
+                                    <th>Sunday</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableData"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>

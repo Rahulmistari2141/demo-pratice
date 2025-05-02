@@ -22,7 +22,7 @@ function newElement() {
     return false;
   };
 
-  if (inputlistValueId !== '' && inputlistValue !== '' && inputgenderList !=='') {
+  if (inputlistValueId !== '' && inputlistValue !== '' && inputgenderList !== '') {
     // object create
     const todolistObj = {
       ListID: inputlistValueId,
@@ -32,11 +32,11 @@ function newElement() {
 
     // update object in array and check index
 
-    if(editIndex !== null){
+    if (editIndex !== null) {
       todolistArry[editIndex] = todolistObj;
       editFlag = false;
       editIndex = null;
-    } else{
+    } else {
       todolistArry.push(todolistObj);
     }
 
@@ -45,7 +45,7 @@ function newElement() {
     inputlistValueId.value = '';
     inputlistValue.value = '';
     inputgenderList.value = '',
-    console.log(todolistArry);
+      console.log(todolistArry);
     todolistInputId.value = '';
     todolistInput.value = '';
     genderList.value = '';
@@ -138,21 +138,118 @@ function addlistData() {
 // }
 
 
-const  monthSelect = document.getElementById("yearMonths");
-let html = '';
+const monthSelect = document.getElementById("yearMonths");
+const tableDataShow = document.getElementById("tableData");
+
 const months = [
   "January", "February", "March", "April",
   "May", "June", "July", "August",
   "September", "October", "November", "December"
 ];
+
+// Populate dropdown
+let html = '';
+for (let i = 0; i < months.length; i++) {
+  html += `<option value="${i}">${months[i]}</option>`;
+}
+monthSelect.innerHTML = html;
+
+
+// Function to get number of days in a month
+function getDateMonth(monthIndex, year) {
+  return new Date(year, monthIndex + 1, 0).getDate();
+}
+
+// submitMonth function and generate table
+function submitMonth() {
+  // debugger
+  const monthIndex = parseInt(monthSelect.value);
+  const currentYear = new Date().getDate();
+  const days = getDateMonth(monthIndex, currentYear);
+
+  // if(monthSelect.value == 'January' || monthSelect.value == 'March'){
+  //   days = 31
+  // }
+
+  let tablShow = '';
+  for (let day = 1; day <= days; day++) {
+    tablShow += `<tr>
+        <td>${day}</td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+        </td>
+    </tr>`;
+  }
+
+  tableDataShow.innerHTML = tablShow;
+}
+
+
+
+// const monthSelect = document.getElementById("yearMonths");
+// const tableDataShow = document.getElementById("tableData");
+
+// const months = [
+//   "January", "February", "March", "April",
+//   "May", "June", "July", "August",
+//   "September", "October", "November", "December"
+// ];
+
 // console.log(months);
 
-for (let i = 0; i < months.length; i++) {
-   html += `<option value="${months[i]}">${months[i]}</option>`;
-}
-// data binding to the html for select
+// let html = '';
+// for (let i = 0; i < months.length; i++) {
+//   html += `<option value="${months[i]}">${months[i]}</option>`;
+// }
+// // data binding to the html for select
+// monthSelect.innerHTML = html;
 
-monthSelect.innerHTML = html ;  
+// function getDateMonth(monthList, year) {
+//   return new Date(year, monthList + 1, 0).getDate();
+// }
+
+// function submitMonth() {
+//   const monthsList = parseInt(monthSelect.value);
+//   const tableShow = tableData.value;
+//   const currentDate = new Date().getDate();
+//   const days = getDateMonth(monthsList, currentDate);
+//   console.log(days);
+//   console.log(tableShow);
+
+//   let tablShow = '';
+//   for (let day = 1; day <= days; day++){
+//     tablShow +=`<tr>
+//         <td>@{day}</td>
+//         <td>@{date}</td>
+//     </tr>`;
+//   };
+
+//   tableDataShow.innerHTML = tablShow;
+  
+// };
+
+
 
 
 
