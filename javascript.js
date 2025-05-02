@@ -2,6 +2,7 @@ const todolistInputId = document.getElementById("myInputId");
 const todolistInput = document.getElementById("myInput");
 const todolistUi = document.getElementById("addUlData");
 const genderList = document.getElementById("genderList");
+const addButton = document.getElementById("addBtn");
 
 let todolistArry = [];
 let editIndex = null;
@@ -34,8 +35,10 @@ function newElement() {
 
     if (editIndex !== null) {
       todolistArry[editIndex] = todolistObj;
+      addButton.textContent = 'Add';
       editFlag = false;
       editIndex = null;
+
     } else {
       todolistArry.push(todolistObj);
     }
@@ -99,6 +102,8 @@ function addlistData() {
       editIndex = i;
       todolistInputId.value = todolistArry[i].ListID;
       todolistInput.value = todolistArry[i].listValue;
+      genderList.value = todolistArry[i].typeTask;
+      addButton.textContent = 'Update';
       console.log(todolistArry);
     }
 
@@ -144,7 +149,7 @@ const tableDataShow = document.getElementById("tableData");
 const months = [
   "January", "February", "March", "April",
   "May", "June", "July", "August",
-  "September", "October", "November", "December"
+  "September", "October", "November", "December", 
 ];
 
 // Populate dropdown
@@ -154,7 +159,6 @@ for (let i = 0; i < months.length; i++) {
 }
 monthSelect.innerHTML = html;
 
-
 // Function to get number of days in a month
 function getDateMonth(monthIndex, year) {
   return new Date(year, monthIndex + 1, 0).getDate();
@@ -162,14 +166,9 @@ function getDateMonth(monthIndex, year) {
 
 // submitMonth function and generate table
 function submitMonth() {
-  // debugger
   const monthIndex = parseInt(monthSelect.value);
   const currentYear = new Date().getDate();
   const days = getDateMonth(monthIndex, currentYear);
-
-  // if(monthSelect.value == 'January' || monthSelect.value == 'March'){
-  //   days = 31
-  // }
 
   let tablShow = '';
   for (let day = 1; day <= days; day++) {
@@ -200,7 +199,34 @@ function submitMonth() {
           <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
         </td>
     </tr>`;
-  }
+  };
+  tablShow += `<tr>
+                <td class="fw-semibold">Total</td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+                <td>
+                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
+                </td>
+              </tr>`;
 
   tableDataShow.innerHTML = tablShow;
 }
@@ -248,6 +274,19 @@ function submitMonth() {
 //   tableDataShow.innerHTML = tablShow;
   
 // };
+
+const monthsdate = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const d = new Date();
+
+let month1 = monthsdate[d.getDate()];
+document.getElementById("demo").innerHTML = month1;
+
+
+
+
+
+
+
 
 
 
