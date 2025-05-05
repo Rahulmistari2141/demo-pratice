@@ -143,7 +143,11 @@ function addlistData() {
 // }
 
 
+
+//---------Calendar App Project-----------//
+
 const monthSelect = document.getElementById("yearMonths");
+const tableShow = document.getElementById("table");
 const tableDataShow = document.getElementById("tableData");
 
 const months = [
@@ -158,6 +162,7 @@ for (let i = 0; i < months.length; i++) {
   html += `<option value="${i}">${months[i]}</option>`;
 }
 monthSelect.innerHTML = html;
+console.log(months);
 
 // Function to get number of days in a month
 function getDateMonth(monthIndex, year) {
@@ -166,69 +171,82 @@ function getDateMonth(monthIndex, year) {
 
 // submitMonth function and generate table
 function submitMonth() {
-  const monthIndex = parseInt(monthSelect.value);
+  const monthIndex = parseInt(monthSelect.value);    //Parses a string and returns an integer
   const currentYear = new Date().getDate();
   const days = getDateMonth(monthIndex, currentYear);
 
-  let tablShow = '';
-  for (let day = 1; day <= days; day++) {
-    tablShow += `<tr>
-        <td>${day}</td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-        <td>
-          <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-        </td>
-    </tr>`;
-  };
-  tablShow += `<tr>
-                <td class="fw-semibold">Total</td>
+  if (monthIndex !== '') {
+      // Add Table
+      let tablShow = '';
+      for (let day = 1; day <= days; day++) {
+        tablShow += `<tr data-row="${day}">
+            <td>${day}</td>`;
+    
+            for (let dayIndex = 1; dayIndex < 8; dayIndex++){
+              tablShow += ` 
                 <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-                <td>
-                  <input type="text" class="form-control" id="myInputId" placeholder="Enter Amount..">
-                </td>
-              </tr>`;
+                  <input id="inputType" class="form-control" data-day="${dayIndex}" data-row="${day}" oninput="updateTotals()" placeholder="Enter Amount..">
+                </td>`;
+            }
+    
+          tablShow += `<td>
+            <input type="text" class="form-control row-total" placeholder="Total Amount.." data-row="${day}">
+          </td></tr>`;
+      }
+    
+      // Add total row for columns
+    
+      tablShow += `<tr>
+                    <td class="fw-semibold">Total</td>`;
+                        for (let dayIndex = 1; dayIndex < 8; dayIndex++){
+                           tablShow += ` <td>
+                              <input class="form-control col-total" data-day="${dayIndex}" oninput="updateTotals()" placeholder="Total Amount..">
+                          </td>`;
+                        };  
+      tablShow +=  `</tr>`;
+      tableDataShow.innerHTML = tablShow;
 
-  tableDataShow.innerHTML = tablShow;
+    tableShow.style.display = "block";
+
+  } else {
+    tableShow.style.display = "none";
+  };
+  updateTotals();
+};
+
+function updateTotals() {
+    const inputValue = document.querySelectorAll('#inputType');
+    const rowTotal = document.querySelectorAll('.row-total');
+    const colTotal = document.querySelectorAll('.col-total');
+    const totalRows = {};
+    const colArrayTotals = Array(8).fill(0);
+    console.log(totalRows);
+    console.log(colArrayTotals);
+    // console.log(inputValue);
+
+    inputValue.forEach(input => {
+      const inputValue = parseFloat(input.value) || 0;
+      const Value = input.dataset.row;
+      const day = parseInt(input.dataset.day);
+
+      // Row total
+      totalRows[Value] = (totalRows[Value] || 0) + inputValue;
+  
+      // Column total
+      colArrayTotals[day] += inputValue;
+    });
+  
+    // Set row totals
+    rowTotal.forEach(input => {
+      const row = input.dataset.row;
+      input.value = totalRows[row] || '';
+    });
+  
+    // Set column totals
+    colTotal.forEach(input => {
+      const day = parseInt(input.dataset.day);
+      input.value = colArrayTotals[day] || '';
+    });
 }
 
 
@@ -275,11 +293,6 @@ function submitMonth() {
   
 // };
 
-const monthsdate = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-const d = new Date();
-
-let month1 = monthsdate[d.getDate()];
-document.getElementById("demo").innerHTML = month1;
 
 
 
