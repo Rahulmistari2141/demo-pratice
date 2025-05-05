@@ -225,9 +225,9 @@ function updateTotals() {
     // console.log(inputValue);
 
     inputValue.forEach(input => {
-      const inputValue = parseFloat(input.value) || 0;
+      const inputValue = parseFloat(input.value) || 0;  // Parses a string and returns a floating point number
       const Value = input.dataset.row;
-      const day = parseInt(input.dataset.day);
+      const day = parseInt(input.dataset.day);  // Parses a string and returns an integer
 
       // Row total
       totalRows[Value] = (totalRows[Value] || 0) + inputValue;
